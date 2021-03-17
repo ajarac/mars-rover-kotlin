@@ -1,5 +1,5 @@
 package com.wallapop
 
-enum class Movements {
+enum class Movement {
     FORWARD, BACKWARD
 }
