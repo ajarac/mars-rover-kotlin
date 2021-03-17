@@ -1,4 +1,4 @@
-package com.wallapop
+package com.wallapop.position
 
 data class Position(val point: Point = Point(0, 0), val direction: Direction = Direction.NORTH) {
 

@@ -1,4 +1,5 @@
 import com.wallapop.*
+import com.wallapop.position.*
 import org.junit.Test;
 
 import org.amshove.kluent.`should be equal to`

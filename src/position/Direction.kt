@@ -1,4 +1,4 @@
-package com.wallapop
+package com.wallapop.position
 
 enum class Direction {
     NORTH, EAST, SOUTH, WEST;
