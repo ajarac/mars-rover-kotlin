@@ -46,4 +46,13 @@ class MarsRoverTest {
 
         rover.getPosition() `should be equal to` Position(Point(0, 0), Direction.EAST)
     }
+
+    @Test
+    fun `Mars rover should rotate to right, south to west`() {
+        val rover = MarsRover(position = Position(direction = Direction.SOUTH))
+
+        rover.rotateTo(Rotate.RIGHT)
+
+        rover.getPosition() `should be equal to` Position(Point(0, 0), Direction.WEST)
+    }
 }

@@ -1,6 +1,6 @@
 package com.wallapop
 
-class MarsRover(private var position : Position = Position(Point(0,0), Direction.NORTH)) {
+class MarsRover(private var position : Position = Position()) {
 
     fun getPosition(): Position {
         return position

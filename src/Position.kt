@@ -1,6 +1,6 @@
 package com.wallapop
 
-data class Position(val point: Point, val direction: Direction) {
+data class Position(val point: Point = Point(0, 0), val direction: Direction = Direction.NORTH) {
 
     fun moteTo(movement: Movement): Position {
         return when(movement) {
