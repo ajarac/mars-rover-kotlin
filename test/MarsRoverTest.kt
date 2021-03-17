@@ -26,7 +26,7 @@ class MarsRoverTest {
 
         rover.moveTo(Movement.BACKWARD)
 
-        rover.getPosition() `should be equal to` Position(Point(0, 1), Direction.NORTH)
+        rover.getPosition() `should be equal to` Position(Point(-1, 0), Direction.NORTH)
     }
 
     @Test
@@ -54,5 +54,25 @@ class MarsRoverTest {
         rover.rotateTo(Rotate.RIGHT)
 
         rover.getPosition() `should be equal to` Position(Point(0, 0), Direction.WEST)
+    }
+
+    @Test
+    fun `Mars rover should rotate to right and then move to forward`() {
+        val rover = MarsRover()
+
+        rover.rotateTo(Rotate.RIGHT)
+        rover.moveTo(Movement.FORWARD)
+
+        rover.getPosition() `should be equal to` Position(Point(0, -1), Direction.EAST)
+    }
+
+    @Test
+    fun `Mars rover should rotate to left and then move to backward`() {
+        val rover = MarsRover()
+
+        rover.rotateTo(Rotate.LEFT)
+        rover.moveTo(Movement.BACKWARD)
+
+        rover.getPosition() `should be equal to` Position(Point(0, -1), Direction.WEST)
     }
 }

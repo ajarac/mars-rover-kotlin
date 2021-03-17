@@ -1,3 +1,8 @@
 package com.wallapop
 
-data class Point (val x: Int,val y: Int)
+data class Point (val x: Int,val y: Int) {
+
+    fun add(point: Point): Point = Point(x + point.x, y + point.y)
+
+    fun subtract(point: Point): Point = Point(x - point.x, y - point.y)
+}
