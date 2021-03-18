@@ -93,4 +93,13 @@ class MarsRoverTest {
 
         rover.getPosition() `should be equal to` Position(point = Point(0, 9))
     }
+
+    @Test
+    fun `Mars rover when arrive at the back limit and move backward, should be at the other side`() {
+        val rover = MarsRover(position = Position(point = Point(0, 0)))
+
+        rover.moveTo(Movement.BACKWARD)
+
+        rover.getPosition() `should be equal to` Position(point = Point(9, 0))
+    }
 }
