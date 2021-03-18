@@ -1,6 +1,6 @@
-import com.wallapop.*
-import com.wallapop.planet.Planet
-import com.wallapop.position.*
+import com.wallapop.domain.MarsRover
+import com.wallapop.domain.planet.Planet
+import com.wallapop.domain.position.*
 import org.junit.Test;
 
 import org.amshove.kluent.`should be equal to`
@@ -28,7 +28,7 @@ class MarsRoverTest {
 
         rover.moveTo(Movement.BACKWARD)
 
-        rover.getPosition() `should be equal to` Position(Point(-1, 0), Direction.NORTH)
+        rover.getPosition() `should be equal to` Position(Point(9, 0), Direction.NORTH)
     }
 
     @Test
@@ -65,7 +65,7 @@ class MarsRoverTest {
         rover.rotateTo(Rotate.RIGHT)
         rover.moveTo(Movement.FORWARD)
 
-        rover.getPosition() `should be equal to` Position(Point(0, -1), Direction.EAST)
+        rover.getPosition() `should be equal to` Position(Point(0, 9), Direction.EAST)
     }
 
     @Test
@@ -75,7 +75,7 @@ class MarsRoverTest {
         rover.rotateTo(Rotate.LEFT)
         rover.moveTo(Movement.BACKWARD)
 
-        rover.getPosition() `should be equal to` Position(Point(0, -1), Direction.WEST)
+        rover.getPosition() `should be equal to` Position(Point(0, 9), Direction.WEST)
     }
 
     @Test
