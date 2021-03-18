@@ -76,4 +76,11 @@ class MarsRoverTest {
 
         rover.getPosition() `should be equal to` Position(Point(0, -1), Direction.WEST)
     }
+
+    @Test
+    fun `Mars rover should initialize at mars with 10 x 10 size`() {
+        val rover = MarsRover()
+
+        rover.getPlanet() `should be equal to` Planet(10, 10)
+    }
 }
