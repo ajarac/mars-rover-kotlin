@@ -1,4 +1,4 @@
-package com.wallapop.position
+package com.wallapop.domain.position
 
 data class Point (val x: Int,val y: Int) {
 

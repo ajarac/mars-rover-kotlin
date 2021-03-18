@@ -1,4 +1,4 @@
-package com.wallapop.position
+package com.wallapop.domain.position
 
 enum class Rotate {
     LEFT, RIGHT

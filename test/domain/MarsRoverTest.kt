@@ -1,3 +1,5 @@
+package domain
+
 import com.wallapop.domain.MarsRover
 import com.wallapop.domain.planet.Planet
 import com.wallapop.domain.position.*

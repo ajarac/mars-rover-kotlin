@@ -1,9 +1,9 @@
-package com.wallapop
+package com.wallapop.domain
 
-import com.wallapop.planet.Planet
-import com.wallapop.position.Movement
-import com.wallapop.position.Position
-import com.wallapop.position.Rotate
+import com.wallapop.domain.planet.Planet
+import com.wallapop.domain.position.Movement
+import com.wallapop.domain.position.Position
+import com.wallapop.domain.position.Rotate
 
 class MarsRover(private var position : Position = Position(), private val planet: Planet = Planet(10, 10)) {
 

@@ -1,6 +1,6 @@
-package com.wallapop.position
+package com.wallapop.domain.position
 
-import com.wallapop.planet.Planet
+import com.wallapop.domain.planet.Planet
 
 data class Position(val point: Point = Point(0, 0), val direction: Direction = Direction.NORTH) {
 
