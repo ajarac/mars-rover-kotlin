@@ -1,5 +1,7 @@
 package com.wallapop.position
 
+import com.wallapop.planet.Planet
+
 data class Position(val point: Point = Point(0, 0), val direction: Direction = Direction.NORTH) {
 
     companion object {
@@ -13,11 +15,11 @@ data class Position(val point: Point = Point(0, 0), val direction: Direction = D
         }
     }
 
-    fun moteTo(movement: Movement): Position {
+    fun moteTo(movement: Movement, planet: Planet): Position {
         val vectorDirection: Point = vectorDirection(direction)
         return when(movement) {
-            Movement.FORWARD -> copy(point = point.add(vectorDirection))
-            Movement.BACKWARD -> copy(point = point.subtract(vectorDirection))
+            Movement.FORWARD -> copy(point = point.add(vectorDirection).normalize(planet.height, planet.width))
+            Movement.BACKWARD -> copy(point = point.subtract(vectorDirection).normalize(planet.height, planet.width))
         }
     }
 

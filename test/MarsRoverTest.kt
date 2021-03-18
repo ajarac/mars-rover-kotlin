@@ -1,4 +1,5 @@
 import com.wallapop.*
+import com.wallapop.planet.Planet
 import com.wallapop.position.*
 import org.junit.Test;
 
@@ -82,5 +83,14 @@ class MarsRoverTest {
         val rover = MarsRover()
 
         rover.getPlanet() `should be equal to` Planet(10, 10)
+    }
+
+    @Test
+    fun `Mars rover when arrive at the limit, should be on the other side`() {
+        val rover = MarsRover(position = Position(point = Point(9, 9)))
+
+        rover.moveTo(Movement.FORWARD)
+
+        rover.getPosition() `should be equal to` Position(point = Point(0, 9))
     }
 }

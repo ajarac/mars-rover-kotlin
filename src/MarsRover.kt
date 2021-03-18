@@ -1,5 +1,6 @@
 package com.wallapop
 
+import com.wallapop.planet.Planet
 import com.wallapop.position.Movement
 import com.wallapop.position.Position
 import com.wallapop.position.Rotate
@@ -11,7 +12,7 @@ class MarsRover(private var position : Position = Position(), private val planet
     }
 
     fun moveTo(movement: Movement) {
-        position = position.moteTo(movement)
+        position = position.moteTo(movement, planet)
     }
 
     fun rotateTo(rotate: Rotate) {
