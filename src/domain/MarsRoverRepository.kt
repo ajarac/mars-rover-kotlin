@@ -1,8 +1,10 @@
 package com.wallapop.domain
 
+import java.util.*
+
 interface MarsRoverRepository {
 
-    fun get(): MarsRover
+    fun get(): Optional<MarsRover>
 
     fun create(marsRover: MarsRover)
 
