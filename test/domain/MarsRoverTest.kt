@@ -1,11 +1,16 @@
 package domain
 
 import com.wallapop.domain.MarsRover
+import com.wallapop.domain.planet.EncounterAnObstacleException
+import com.wallapop.domain.planet.Obstacle
 import com.wallapop.domain.planet.Planet
+import com.wallapop.domain.point.Point
 import com.wallapop.domain.position.*
 import org.junit.Test;
 
 import org.amshove.kluent.`should be equal to`
+import org.amshove.kluent.invoking
+import org.amshove.kluent.shouldThrow
 
 class MarsRoverTest {
 
@@ -103,5 +108,15 @@ class MarsRoverTest {
         rover.moveTo(Movement.BACKWARD)
 
         rover.getPosition() `should be equal to` Position(point = Point(9, 0))
+    }
+
+    @Test
+    fun `Mars rover should stay at the same position if when moves encounters an obstacle`() {
+        val obstaclesList: ArrayList<Obstacle> = arrayListOf(Obstacle(point = Point(1, 0)))
+        val rover = MarsRover(planet = Planet(10, 10, obstacles = obstaclesList))
+
+        invoking {rover.moveTo(Movement.FORWARD) } shouldThrow EncounterAnObstacleException::class
+
+        rover.getPosition() `should be equal to` Position(point= Point(0, 0))
     }
 }
