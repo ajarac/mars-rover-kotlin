@@ -5,7 +5,7 @@ import com.wallapop.domain.position.Movement
 import com.wallapop.domain.position.Position
 import com.wallapop.domain.position.Rotate
 
-class MarsRover(private var position : Position = Position(), private val planet: Planet = Planet(10, 10)) {
+data class MarsRover(private var position : Position = Position(), private val planet: Planet = Planet(10, 10)) {
 
     fun getPosition(): Position {
         return position
