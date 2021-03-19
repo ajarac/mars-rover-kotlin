@@ -26,7 +26,9 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:$logback_version")
     implementation("org.junit.jupiter:junit-jupiter:5.4.2")
     testImplementation("io.ktor:ktor-server-tests:$ktor_version")
-    testImplementation ("org.amshove.kluent:kluent:$kluent_version")
+    testImplementation("org.amshove.kluent:kluent:$kluent_version")
+    testImplementation("io.mockk:mockk:1.9.3")
+    testImplementation ("com.github.javafaker:javafaker:1.0.2")
 }
 
 kotlin.sourceSets["main"].kotlin.srcDirs("src")
