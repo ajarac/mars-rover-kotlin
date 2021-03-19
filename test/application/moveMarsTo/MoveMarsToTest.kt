@@ -5,6 +5,10 @@ import com.wallapop.application.moveMarsTo.MoveMarsToCommand
 import com.wallapop.domain.MarsRover
 import com.wallapop.domain.MarsRoverNotFoundException
 import com.wallapop.domain.MarsRoverRepository
+import com.wallapop.domain.planet.EncounterAnObstacleException
+import com.wallapop.domain.planet.Obstacle
+import com.wallapop.domain.planet.Planet
+import com.wallapop.domain.point.Point
 import com.wallapop.domain.position.Movement
 import domain.MarsRoverStub
 import io.mockk.every
@@ -23,16 +27,26 @@ class MoveMarsToTest {
 
     @Test
     fun `should move mars to forward and save`() {
-        val mars: MarsRover = MarsRoverStub.random()
+        val rover: MarsRover = MarsRoverStub.random()
         val moveMarsToCommand = MoveMarsToCommand(Movement.FORWARD)
-        every { repository.get() } returns Optional.of(mars)
+        every { repository.get() } returns Optional.of(rover)
         every { repository.update(any()) } returns Unit
-        val marsExpected: MarsRover = mars.copy()
+        val marsExpected: MarsRover = rover.copy()
 
         service.execute(moveMarsToCommand)
 
         marsExpected.moveTo(Movement.FORWARD)
         verify(exactly = 1) { repository.update(marsRover = marsExpected) }
+    }
+
+    @Test
+    fun `should throw obstacle if mars encounters an obstacle`() {
+        val obstaclesList: ArrayList<Obstacle> = arrayListOf(Obstacle(point = Point(1, 0)))
+        val rover = MarsRover(planet = Planet(10, 10, obstacles = obstaclesList))
+        val moveMarsToCommand = MoveMarsToCommand(Movement.FORWARD)
+        every { repository.get() } returns Optional.of(rover)
+
+        invoking { service.execute(moveMarsToCommand) } shouldThrow EncounterAnObstacleException::class
     }
 
     @Test
