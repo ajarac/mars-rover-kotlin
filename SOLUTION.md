@@ -7,8 +7,8 @@ Hey guys! this is my Mars Rover Test in Kotlin
 - JUnit5 for testing
 - Kodein for dependency injection
 - Kluent as assertion tests
-- Mockk for create mocks
-- JavaFaker for create random data
+- Mockk for mocks
+- JavaFaker for creating random data
 
 ## Design
 I started with the MarsRover Class and then with the World class as dependency of MarsRover.
