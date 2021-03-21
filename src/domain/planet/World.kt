@@ -2,11 +2,10 @@ package com.wallapop.domain.planet
 
 import com.wallapop.domain.point.Point
 
-data class World(val height: Int, val width: Int, val obstacles: ArrayList<Obstacle> = arrayListOf()) {
+data class World(val height: Int, val width: Int, val obstacles: List<Obstacle> = emptyList()) {
 
     fun checkEncounterAnObstacle(point: Point) {
-        val encounterAnObstacle: Boolean =  obstacles.any{it.point == point}
-        if(encounterAnObstacle) {
+        if(obstacles.any{it.point == point}) {
             throw EncounterAnObstacleException("Encounter obstacle!")
         }
     }

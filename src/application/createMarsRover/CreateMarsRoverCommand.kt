@@ -9,4 +9,4 @@ data class CreateMarsRoverCommand(
     val direction: Direction,
     val heightPlanet: Int,
     val widthPlanet: Int,
-    val obstacles: ArrayList<Obstacle>)
+    val obstacles: List<Obstacle>)

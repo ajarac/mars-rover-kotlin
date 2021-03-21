@@ -18,7 +18,7 @@ import org.junit.jupiter.api.TestInstance
 import shared.FakerSingleton
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class CreateMarsRoverTest() {
+class CreateMarsRoverTest {
     private val repository = mockk<MarsRoverRepository>()
     private val service: CreateMarsRover = CreateMarsRover(repository)
 
@@ -28,13 +28,13 @@ class CreateMarsRoverTest() {
         val directionRover: Direction = DirectionStub.random()
         val heightPlanet: Int = FakerSingleton.randomInt(10, 100)
         val widthPlanet: Int = FakerSingleton.randomInt(10, 100)
-        val createMarsRoverCommand =  CreateMarsRoverCommand(point = pointRover, direction = directionRover, heightPlanet = heightPlanet, widthPlanet = widthPlanet, obstacles = arrayListOf())
+        val createMarsRoverCommand =  CreateMarsRoverCommand(point = pointRover, direction = directionRover, heightPlanet = heightPlanet, widthPlanet = widthPlanet, obstacles = emptyList())
         every { repository.create(any()) } returns Unit
 
         service.execute(createMarsRoverCommand)
 
         val position = Position(point = pointRover, direction = directionRover)
-        val planet = World(height = heightPlanet, width = widthPlanet, obstacles = arrayListOf())
-        verify(exactly = 1) { repository.create(MarsRover(position = position, planet = planet)) }
+        val world = World(height = heightPlanet, width = widthPlanet, obstacles = emptyList())
+        verify(exactly = 1) { repository.create(MarsRover(position = position, world = world)) }
     }
 }
