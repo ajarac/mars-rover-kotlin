@@ -15,7 +15,7 @@ import shared.FakerSingleton
 class CreateMarsRoverControllerTest {
 
     @Test
-    fun `should create a mars rover as Post Request`(): Unit = withTestApplication (Application::main) {
+    fun `should create a mars rover in a Post Request`(): Unit = withTestApplication (Application::main) {
 
         val createMarsRoverDTO = CreateMarsRoverDTO(
             point = PointStub.random(),

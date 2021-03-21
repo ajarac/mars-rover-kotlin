@@ -1,13 +1,18 @@
 package com.wallapop
 
 import com.wallapop.application.createMarsRover.CreateMarsRover
+import com.wallapop.application.moveMarsTo.MoveMarsTo
+import com.wallapop.domain.MarsRoverNotFoundException
 import com.wallapop.domain.MarsRoverRepository
 import com.wallapop.infrastructure.controllers.checkController
 import com.wallapop.infrastructure.controllers.createMarsRoverController
 import com.wallapop.infrastructure.repository.inmemory.InMemoryMarsRoverRepository
+import infrastructure.controllers.moveMarsRoverController
 import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.gson.*
+import io.ktor.http.*
+import io.ktor.response.*
 import io.ktor.routing.*
 import io.ktor.serialization.*
 import org.kodein.di.ktor.kodein
@@ -31,12 +36,19 @@ fun Application.main() {
         }
         json()
     }
+    install(StatusPages) {
+        exception<MarsRoverNotFoundException> {
+            call.respond(HttpStatusCode.NotFound)
+        }
+    }
     kodein {
         bind<MarsRoverRepository>() with singleton { InMemoryMarsRoverRepository() }
         bind<CreateMarsRover>() with singleton { CreateMarsRover(instance()) }
+        bind<MoveMarsTo>() with singleton { MoveMarsTo(instance()) }
     }
     routing {
         checkController()
         createMarsRoverController()
+        moveMarsRoverController()
     }
 }
