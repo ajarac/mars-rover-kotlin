@@ -36,7 +36,7 @@ class RotateMarsToTest {
         verify(exactly = 1) { repository.update(marsRover = marsExpected) }
     }
 
-    @Test()
+    @Test
     fun `if there is not a mars rover, should tell us it`() {
         val rotateMarsToCommand = RotateMarsToCommand(Rotate.LEFT)
         every { repository.findOrFail() } throws MarsRoverNotFoundException()
