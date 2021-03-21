@@ -1,15 +1,13 @@
 package com.wallapop
 
 import com.wallapop.application.createMarsRover.CreateMarsRover
+import com.wallapop.application.deleteMarsRover.DeleteMarsRover
 import com.wallapop.application.findMarsRover.FindMarsRover
 import com.wallapop.application.moveMarsTo.MoveMarsTo
 import com.wallapop.application.rotateMarsTo.RotateMarsTo
 import com.wallapop.domain.MarsRoverNotFoundException
 import com.wallapop.domain.MarsRoverRepository
-import com.wallapop.infrastructure.controllers.checkController
-import com.wallapop.infrastructure.controllers.createMarsRoverController
-import com.wallapop.infrastructure.controllers.finMarsRoverController
-import com.wallapop.infrastructure.controllers.rotateMarsRoverController
+import com.wallapop.infrastructure.controllers.*
 import com.wallapop.infrastructure.repository.inmemory.InMemoryMarsRoverRepository
 import infrastructure.controllers.moveMarsRoverController
 import io.ktor.application.*
@@ -47,6 +45,7 @@ fun Application.main() {
         bind<MoveMarsTo>() with singleton { MoveMarsTo(instance()) }
         bind<RotateMarsTo>() with singleton { RotateMarsTo(instance()) }
         bind<FindMarsRover>() with singleton { FindMarsRover(instance()) }
+        bind<DeleteMarsRover>() with singleton { DeleteMarsRover(instance()) }
     }
     routing {
         checkController()
@@ -54,5 +53,6 @@ fun Application.main() {
         moveMarsRoverController()
         rotateMarsRoverController()
         finMarsRoverController()
+        deleteMarsRoverController()
     }
 }
