@@ -26,8 +26,8 @@ class CreateMarsRoverTest {
     fun `should create mars rover to save in the repository`() {
         val pointRover: Point = PointStub.random()
         val directionRover: Direction = DirectionStub.random()
-        val heightPlanet: Int = FakerSingleton.randomInt(10, 100)
-        val widthPlanet: Int = FakerSingleton.randomInt(10, 100)
+        val heightPlanet = 100
+        val widthPlanet = 100
         val createMarsRoverCommand =  CreateMarsRoverCommand(point = pointRover, direction = directionRover, heightPlanet = heightPlanet, widthPlanet = widthPlanet, obstacles = emptyList())
         every { repository.create(any()) } returns Unit
 

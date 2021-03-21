@@ -5,7 +5,7 @@ import shared.FakerSingleton
 
 class PointStub {
     companion object {
-        fun random(x: Int = FakerSingleton.randomInt(0, 100), y: Int = FakerSingleton.randomInt(0, 100)): Point {
+        fun random(x: Int = FakerSingleton.randomInt(0, 99), y: Int = FakerSingleton.randomInt(0, 99)): Point {
             return Point(x, y)
         }
     }

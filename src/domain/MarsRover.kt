@@ -5,7 +5,11 @@ import com.wallapop.domain.position.Movement
 import com.wallapop.domain.position.Position
 import com.wallapop.domain.position.Rotate
 
-data class MarsRover(private var position : Position = Position(), private val world: World = World(10, 10)) {
+data class MarsRover(private var position : Position = Position(), private val world: World = World()) {
+
+    init {
+        world.checkPointInsideWorld(position.point)
+    }
 
     fun getPosition(): Position {
         return position
@@ -13,10 +17,12 @@ data class MarsRover(private var position : Position = Position(), private val w
 
     fun moveTo(movement: Movement) {
         position = position.moteTo(movement, world)
+        world.checkPointInsideWorld(position.point)
     }
 
     fun rotateTo(rotate: Rotate) {
         position = position.rotateTo(rotate)
+        world.checkPointInsideWorld(position.point)
     }
 
     fun getWorld(): World {

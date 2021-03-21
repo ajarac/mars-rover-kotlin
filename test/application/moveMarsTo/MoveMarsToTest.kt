@@ -42,7 +42,7 @@ class MoveMarsToTest {
     @Test
     fun `should throw obstacle if mars encounters an obstacle`() {
         val obstaclesList: ArrayList<Obstacle> = arrayListOf(Obstacle(point = Point(1, 0)))
-        val rover = MarsRover(world = World(10, 10, obstacles = obstaclesList))
+        val rover = MarsRover(world = World(obstacles = obstaclesList))
         val moveMarsToCommand = MoveMarsToCommand(Movement.FORWARD)
         every { repository.findOrFail() } returns rover
 

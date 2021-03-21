@@ -10,7 +10,6 @@ import io.ktor.http.*
 import io.ktor.server.testing.*
 import org.amshove.kluent.`should be equal to`
 import org.junit.Test
-import shared.FakerSingleton
 
 class CreateMarsRoverControllerTest {
 
@@ -20,8 +19,8 @@ class CreateMarsRoverControllerTest {
         val createMarsRoverDTO = CreateMarsRoverDTO(
             point = PointStub.random(),
             direction = DirectionStub.random().toString(),
-            heightPlanet = FakerSingleton.randomInt(0, 100),
-            widthPlanet = FakerSingleton.randomInt(0, 100),
+            heightPlanet = 100,
+            widthPlanet = 100,
             obstacles = arrayListOf(PointStub.random()))
         with(handleRequest(HttpMethod.Post, "/marsRover") {
             addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
