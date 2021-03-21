@@ -1,22 +1,17 @@
 package com.wallapop.application.moveMarsTo
 
-import com.wallapop.application.ApplicationService
 import com.wallapop.domain.MarsRover
 import com.wallapop.domain.MarsRoverNotFoundException
 import com.wallapop.domain.MarsRoverRepository
 import java.util.*
 
-class MoveMarsTo (private val repository: MarsRoverRepository): ApplicationService<MoveMarsToCommand> {
+class MoveMarsTo (private val repository: MarsRoverRepository) {
 
-    override fun execute(command: MoveMarsToCommand) {
-        val optionalMars: Optional<MarsRover> = repository.get()
-        if(optionalMars.isPresent) {
-            val mars = optionalMars.get()
-            mars.moveTo(command.movement)
+    fun execute(command: MoveMarsToCommand) {
+        val rover: MarsRover = repository.findOrFail()
 
-            repository.update(mars)
-        } else {
-            throw MarsRoverNotFoundException()
-        }
+        rover.moveTo(command.movement)
+
+        repository.update(rover)
     }
 }

@@ -29,7 +29,7 @@ class MoveMarsToTest {
     fun `should move mars to forward and save`() {
         val rover: MarsRover = MarsRoverStub.random()
         val moveMarsToCommand = MoveMarsToCommand(Movement.FORWARD)
-        every { repository.get() } returns Optional.of(rover)
+        every { repository.findOrFail() } returns rover
         every { repository.update(any()) } returns Unit
         val marsExpected: MarsRover = rover.copy()
 
@@ -44,7 +44,7 @@ class MoveMarsToTest {
         val obstaclesList: ArrayList<Obstacle> = arrayListOf(Obstacle(point = Point(1, 0)))
         val rover = MarsRover(planet = Planet(10, 10, obstacles = obstaclesList))
         val moveMarsToCommand = MoveMarsToCommand(Movement.FORWARD)
-        every { repository.get() } returns Optional.of(rover)
+        every { repository.findOrFail() } returns rover
 
         invoking { service.execute(moveMarsToCommand) } shouldThrow EncounterAnObstacleException::class
     }
@@ -52,7 +52,7 @@ class MoveMarsToTest {
     @Test
     fun `if there is not a mars rover, should tell us it`() {
         val moveMarsToCommand = MoveMarsToCommand(Movement.FORWARD)
-        every { repository.get() } returns Optional.empty()
+        every { repository.findOrFail() } throws MarsRoverNotFoundException()
         every { repository.update(any()) } returns Unit
 
         invoking { service.execute(moveMarsToCommand) } shouldThrow MarsRoverNotFoundException::class

@@ -1,10 +1,13 @@
 package infrastructure.repository.inmemory
 
 import com.wallapop.domain.MarsRover
+import com.wallapop.domain.MarsRoverNotFoundException
 import com.wallapop.domain.position.Rotate
 import com.wallapop.infrastructure.repository.inmemory.InMemoryMarsRoverRepository
 import domain.MarsRoverStub
 import org.amshove.kluent.`should be equal to`
+import org.amshove.kluent.invoking
+import org.amshove.kluent.shouldThrow
 import org.junit.Test
 import org.junit.jupiter.api.TestInstance
 
@@ -17,7 +20,7 @@ class InMemoryMarsRoverRepositoryTest {
         val marsRover: MarsRover = MarsRoverStub.random()
         repository.create(marsRover)
 
-        repository.get().get() `should be equal to` marsRover
+        repository.findOrFail() `should be equal to` marsRover
     }
 
     @Test
@@ -28,7 +31,7 @@ class InMemoryMarsRoverRepositoryTest {
         marsRover.rotateTo(Rotate.RIGHT)
         repository.update(marsRover)
 
-        repository.get().get() `should be equal to` marsRover
+        repository.findOrFail() `should be equal to` marsRover
     }
 
     @Test
@@ -36,12 +39,12 @@ class InMemoryMarsRoverRepositoryTest {
         val marsRover: MarsRover = MarsRoverStub.random()
         repository.create(marsRover)
 
-        repository.get().get() `should be equal to` marsRover
+        repository.findOrFail() `should be equal to` marsRover
     }
 
     @Test
-    fun `should return a empty mars rover if does not exist`() {
-        repository.get().isPresent `should be equal to` false
+    fun `should throw mars rover not found exception if does not exist`() {
+        invoking {  repository.findOrFail() } shouldThrow MarsRoverNotFoundException::class
     }
 
     @Test
@@ -51,7 +54,7 @@ class InMemoryMarsRoverRepositoryTest {
 
         repository.delete()
 
-        repository.get().isPresent `should be equal to` false
+        invoking {  repository.findOrFail() } shouldThrow MarsRoverNotFoundException::class
     }
 
 }

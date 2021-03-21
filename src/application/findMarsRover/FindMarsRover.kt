@@ -7,12 +7,6 @@ import java.util.*
 
 class FindMarsRover (private val repository: MarsRoverRepository) {
     fun execute(): MarsRover {
-        val optionalRover: Optional<MarsRover> = repository.get()
-
-        if(optionalRover.isPresent) {
-            return optionalRover.get()
-        } else {
-            throw MarsRoverNotFoundException()
-        }
+        return repository.findOrFail()
     }
 }

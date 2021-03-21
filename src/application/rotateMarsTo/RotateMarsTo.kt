@@ -1,22 +1,17 @@
 package com.wallapop.application.rotateMarsTo
 
-import com.wallapop.application.ApplicationService
 import com.wallapop.domain.MarsRover
 import com.wallapop.domain.MarsRoverNotFoundException
 import com.wallapop.domain.MarsRoverRepository
 import java.util.*
 
-class RotateMarsTo(private val repository: MarsRoverRepository): ApplicationService<RotateMarsToCommand>  {
+class RotateMarsTo(private val repository: MarsRoverRepository)  {
 
-    override fun execute(command: RotateMarsToCommand) {
-        val optionalMars: Optional<MarsRover> = repository.get()
-        if(optionalMars.isPresent) {
-            val mars = optionalMars.get()
-            mars.rotateTo(command.rotate)
+    fun execute(command: RotateMarsToCommand) {
+        val rover: MarsRover = repository.findOrFail()
 
-            repository.update(mars)
-        } else {
-            throw MarsRoverNotFoundException()
-        }
+        rover.rotateTo(command.rotate)
+
+        repository.update(rover)
     }
 }

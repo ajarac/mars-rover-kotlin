@@ -12,7 +12,6 @@ import org.amshove.kluent.invoking
 import org.amshove.kluent.shouldThrow
 import org.junit.Test
 import org.junit.jupiter.api.TestInstance
-import java.util.*
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class FindMarsRoverTest {
@@ -22,7 +21,7 @@ class FindMarsRoverTest {
     @Test
     fun `should get the mars rovers`() {
         val rover: MarsRover = MarsRoverStub.random()
-        every { repository.get() } returns Optional.of(rover)
+        every { repository.findOrFail() } returns rover
 
         val roverExpected: MarsRover = service.execute()
 
@@ -31,7 +30,7 @@ class FindMarsRoverTest {
 
     @Test
     fun `should throw mars rover not found if does not exist`() {
-        every { repository.get() } returns Optional.empty()
+        every { repository.findOrFail() } throws MarsRoverNotFoundException()
 
         invoking { service.execute() } shouldThrow MarsRoverNotFoundException::class
     }

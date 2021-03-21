@@ -21,7 +21,6 @@ import org.kodein.di.ktor.kodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.singleton
-import java.text.DateFormat
 
 import java.time.Duration
 
@@ -32,10 +31,7 @@ fun Application.main() {
         maxAgeInSeconds = Duration.ofDays(1).seconds
     }
     install (ContentNegotiation) {
-        gson {
-            setDateFormat(DateFormat.LONG)
-            setPrettyPrinting()
-        }
+        gson()
         json()
     }
     install(StatusPages) {

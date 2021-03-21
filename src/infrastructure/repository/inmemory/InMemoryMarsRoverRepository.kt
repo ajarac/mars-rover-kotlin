@@ -1,14 +1,15 @@
 package com.wallapop.infrastructure.repository.inmemory
 
 import com.wallapop.domain.MarsRover
+import com.wallapop.domain.MarsRoverNotFoundException
 import com.wallapop.domain.MarsRoverRepository
 import java.util.*
 
 class InMemoryMarsRoverRepository : MarsRoverRepository {
     private  var marsRover: MarsRover? = null
 
-    override fun get(): Optional<MarsRover> {
-        return Optional.ofNullable(marsRover)
+    override fun findOrFail(): MarsRover {
+        return marsRover ?: throw MarsRoverNotFoundException()
     }
 
     override fun create(marsRover: MarsRover) {

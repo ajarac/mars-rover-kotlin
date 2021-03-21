@@ -26,7 +26,7 @@ class RotateMarsToTest {
     fun `should rotate mars to left and save`() {
         val mars: MarsRover = MarsRoverStub.random()
         val rotateMarsToCommand = RotateMarsToCommand(Rotate.LEFT)
-        every { repository.get() } returns Optional.of(mars)
+        every { repository.findOrFail() } returns mars
         every { repository.update(any()) } returns Unit
         val marsExpected: MarsRover = mars.copy()
 
@@ -39,7 +39,7 @@ class RotateMarsToTest {
     @Test()
     fun `if there is not a mars rover, should tell us it`() {
         val rotateMarsToCommand = RotateMarsToCommand(Rotate.LEFT)
-        every { repository.get() } returns Optional.empty()
+        every { repository.findOrFail() } throws MarsRoverNotFoundException()
         every { repository.update(any()) } returns Unit
 
         invoking { service.execute(rotateMarsToCommand) } shouldThrow MarsRoverNotFoundException::class
