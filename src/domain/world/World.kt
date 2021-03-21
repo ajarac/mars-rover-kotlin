@@ -5,9 +5,6 @@ import com.wallapop.domain.point.Point
 data class World(val height: Int = 100, val width: Int = 100, val obstacles: List<Obstacle> = emptyList()) {
 
     fun checkPointInsideWorld(point: Point) {
-        println(point)
-        println(height)
-        println(width)
         if(!(point.x in 0 until height && point.y in 0 until width)) {
             throw PointOutsideOfWorld()
         }
