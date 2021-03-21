@@ -7,6 +7,8 @@ import com.wallapop.application.moveMarsTo.MoveMarsTo
 import com.wallapop.application.rotateMarsTo.RotateMarsTo
 import com.wallapop.domain.MarsRoverNotFoundException
 import com.wallapop.domain.MarsRoverRepository
+import com.wallapop.domain.world.EncounterAnObstacleException
+import com.wallapop.domain.world.PointOutsideOfWorld
 import com.wallapop.infrastructure.controllers.*
 import com.wallapop.infrastructure.repository.inmemory.InMemoryMarsRoverRepository
 import infrastructure.controllers.moveMarsRoverController
@@ -37,6 +39,12 @@ fun Application.main() {
     install(StatusPages) {
         exception<MarsRoverNotFoundException> {
             call.respond(HttpStatusCode.NotFound)
+        }
+        exception<PointOutsideOfWorld> {
+            call.respond(HttpStatusCode.BadRequest)
+        }
+        exception<EncounterAnObstacleException> {
+            call.respond(HttpStatusCode.Forbidden)
         }
     }
     kodein {
