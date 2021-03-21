@@ -4,7 +4,7 @@ import com.wallapop.application.createMarsRover.CreateMarsRover
 import com.wallapop.application.createMarsRover.CreateMarsRoverCommand
 import com.wallapop.domain.MarsRover
 import com.wallapop.domain.MarsRoverRepository
-import com.wallapop.domain.planet.World
+import com.wallapop.domain.world.World
 import com.wallapop.domain.point.Point
 import com.wallapop.domain.position.Direction
 import com.wallapop.domain.position.Position

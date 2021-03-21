@@ -1,7 +1,7 @@
-package domain.planet
+package domain.world
 
-import com.wallapop.domain.planet.Obstacle
-import com.wallapop.domain.planet.World
+import com.wallapop.domain.world.Obstacle
+import com.wallapop.domain.world.World
 import shared.FakerSingleton
 
 class PlanetStub {

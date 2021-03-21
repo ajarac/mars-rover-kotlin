@@ -19,9 +19,9 @@ class MoveMarsRoverControllerTest {
         val createMarsRoverDTO = CreateMarsRoverDTO(
             point = marsRover.getPosition().point,
             direction = marsRover.getPosition().direction.toString(),
-            heightPlanet = marsRover.getPlanet().height,
-            widthPlanet = marsRover.getPlanet().width,
-            obstacles = marsRover.getPlanet().obstacles.map { it.point } as ArrayList<Point>)
+            heightPlanet = marsRover.getWorld().height,
+            widthPlanet = marsRover.getWorld().width,
+            obstacles = marsRover.getWorld().obstacles.map { it.point } as ArrayList<Point>)
         handleRequest(HttpMethod.Post, "/marsRover") {
             addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
             setBody(Gson().toJson(createMarsRoverDTO))

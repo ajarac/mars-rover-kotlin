@@ -1,3 +1,3 @@
-package com.wallapop.domain.planet
+package com.wallapop.domain.world
 
 class EncounterAnObstacleException(message:String) : Exception(message)

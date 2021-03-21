@@ -1,6 +1,6 @@
 package com.wallapop.domain
 
-import com.wallapop.domain.planet.World
+import com.wallapop.domain.world.World
 import com.wallapop.domain.position.Movement
 import com.wallapop.domain.position.Position
 import com.wallapop.domain.position.Rotate
@@ -19,7 +19,7 @@ data class MarsRover(private var position : Position = Position(), private val w
         position = position.rotateTo(rotate)
     }
 
-    fun getPlanet(): World {
+    fun getWorld(): World {
         return world
     }
 

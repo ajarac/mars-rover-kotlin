@@ -1,6 +1,6 @@
 package com.wallapop.application.createMarsRover
 
-import com.wallapop.domain.planet.Obstacle
+import com.wallapop.domain.world.Obstacle
 import com.wallapop.domain.point.Point
 import com.wallapop.domain.position.Direction
 

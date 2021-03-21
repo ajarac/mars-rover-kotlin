@@ -1,4 +1,4 @@
-package com.wallapop.domain.planet
+package com.wallapop.domain.world
 
 import com.wallapop.domain.point.Point
 
