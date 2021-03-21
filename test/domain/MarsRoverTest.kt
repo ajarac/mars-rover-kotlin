@@ -3,7 +3,7 @@ package domain
 import com.wallapop.domain.MarsRover
 import com.wallapop.domain.planet.EncounterAnObstacleException
 import com.wallapop.domain.planet.Obstacle
-import com.wallapop.domain.planet.Planet
+import com.wallapop.domain.planet.World
 import com.wallapop.domain.point.Point
 import com.wallapop.domain.position.*
 import org.junit.Test;
@@ -89,7 +89,7 @@ class MarsRoverTest {
     fun `Mars rover should initialize at mars with 10 x 10 size`() {
         val rover = MarsRover()
 
-        rover.getPlanet() `should be equal to` Planet(10, 10)
+        rover.getPlanet() `should be equal to` World(10, 10)
     }
 
     @Test
@@ -113,7 +113,7 @@ class MarsRoverTest {
     @Test
     fun `Mars rover should stay at the same position if when moves encounters an obstacle`() {
         val obstaclesList: ArrayList<Obstacle> = arrayListOf(Obstacle(point = Point(1, 0)))
-        val rover = MarsRover(planet = Planet(10, 10, obstacles = obstaclesList))
+        val rover = MarsRover(planet = World(10, 10, obstacles = obstaclesList))
 
         invoking {rover.moveTo(Movement.FORWARD) } shouldThrow EncounterAnObstacleException::class
 

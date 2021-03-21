@@ -7,7 +7,7 @@ import com.wallapop.domain.MarsRoverNotFoundException
 import com.wallapop.domain.MarsRoverRepository
 import com.wallapop.domain.planet.EncounterAnObstacleException
 import com.wallapop.domain.planet.Obstacle
-import com.wallapop.domain.planet.Planet
+import com.wallapop.domain.planet.World
 import com.wallapop.domain.point.Point
 import com.wallapop.domain.position.Movement
 import domain.MarsRoverStub
@@ -42,7 +42,7 @@ class MoveMarsToTest {
     @Test
     fun `should throw obstacle if mars encounters an obstacle`() {
         val obstaclesList: ArrayList<Obstacle> = arrayListOf(Obstacle(point = Point(1, 0)))
-        val rover = MarsRover(planet = Planet(10, 10, obstacles = obstaclesList))
+        val rover = MarsRover(planet = World(10, 10, obstacles = obstaclesList))
         val moveMarsToCommand = MoveMarsToCommand(Movement.FORWARD)
         every { repository.findOrFail() } returns rover
 

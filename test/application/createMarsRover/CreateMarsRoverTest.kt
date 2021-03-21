@@ -4,7 +4,7 @@ import com.wallapop.application.createMarsRover.CreateMarsRover
 import com.wallapop.application.createMarsRover.CreateMarsRoverCommand
 import com.wallapop.domain.MarsRover
 import com.wallapop.domain.MarsRoverRepository
-import com.wallapop.domain.planet.Planet
+import com.wallapop.domain.planet.World
 import com.wallapop.domain.point.Point
 import com.wallapop.domain.position.Direction
 import com.wallapop.domain.position.Position
@@ -34,7 +34,7 @@ class CreateMarsRoverTest() {
         service.execute(createMarsRoverCommand)
 
         val position = Position(point = pointRover, direction = directionRover)
-        val planet = Planet(height = heightPlanet, width = widthPlanet, obstacles = arrayListOf())
+        val planet = World(height = heightPlanet, width = widthPlanet, obstacles = arrayListOf())
         verify(exactly = 1) { repository.create(MarsRover(position = position, planet = planet)) }
     }
 }

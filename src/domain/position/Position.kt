@@ -1,7 +1,6 @@
 package com.wallapop.domain.position
 
-import com.wallapop.domain.planet.EncounterAnObstacleException
-import com.wallapop.domain.planet.Planet
+import com.wallapop.domain.planet.World
 import com.wallapop.domain.point.Point
 
 data class Position(val point: Point = Point(0, 0), val direction: Direction = Direction.NORTH) {
@@ -17,14 +16,14 @@ data class Position(val point: Point = Point(0, 0), val direction: Direction = D
         }
     }
 
-    fun moteTo(movement: Movement, planet: Planet): Position {
+    fun moteTo(movement: Movement, world: World): Position {
         val vectorDirection: Point = vectorDirection(direction)
         val newPosition: Position = when(movement) {
-            Movement.FORWARD -> copy(point = point.add(vectorDirection).normalize(planet.height, planet.width))
-            Movement.BACKWARD -> copy(point = point.subtract(vectorDirection).normalize(planet.height, planet.width))
+            Movement.FORWARD -> copy(point = point.add(vectorDirection).normalize(world.height, world.width))
+            Movement.BACKWARD -> copy(point = point.subtract(vectorDirection).normalize(world.height, world.width))
         }
 
-        planet.checkEncounterAnObstacle(newPosition.point)
+        world.checkEncounterAnObstacle(newPosition.point)
 
         return newPosition
     }
