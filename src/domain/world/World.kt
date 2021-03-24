@@ -12,7 +12,7 @@ data class World(val height: Int = 100, val width: Int = 100, val obstacles: Lis
 
     fun checkEncounterAnObstacle(point: Point) {
         if(obstacles.any{it.point == point}) {
-            throw EncounterAnObstacleException("Encounter obstacle!")
+            throw EncounterAnObstacleException()
         }
     }
 }
