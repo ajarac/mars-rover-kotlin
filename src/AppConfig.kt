@@ -1,5 +1,6 @@
 package com.wallapop
 
+import com.google.gson.Gson
 import com.wallapop.application.createMarsRover.CreateMarsRover
 import com.wallapop.application.deleteMarsRover.DeleteMarsRover
 import com.wallapop.application.findMarsRover.FindMarsRover
@@ -38,13 +39,13 @@ fun Application.main() {
     }
     install(StatusPages) {
         exception<MarsRoverNotFoundException> {
-            call.respond(HttpStatusCode.NotFound)
+            call.respond(HttpStatusCode.NotFound, Gson().toJson(it))
         }
         exception<PointOutsideOfWorld> {
-            call.respond(HttpStatusCode.BadRequest)
+            call.respond(HttpStatusCode.BadRequest, Gson().toJson(it))
         }
         exception<EncounterAnObstacleException> {
-            call.respond(HttpStatusCode.Forbidden)
+            call.respond(HttpStatusCode.Forbidden, Gson().toJson(it))
         }
     }
     kodein {
