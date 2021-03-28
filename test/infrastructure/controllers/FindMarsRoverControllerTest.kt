@@ -2,6 +2,7 @@ package infrastructure.controllers
 
 import com.google.gson.Gson
 import com.wallapop.domain.MarsRover
+import com.wallapop.domain.MarsRoverNotFoundException
 import com.wallapop.domain.point.Point
 import com.wallapop.infrastructure.controllers.CreateMarsRoverDTO
 import com.wallapop.main
@@ -41,7 +42,7 @@ class FindMarsRoverControllerTest {
             addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
         }) {
             response.status() `should be equal to` HttpStatusCode.NotFound
-            response.content `should be equal to` null
+            response.content `should be equal to` Gson().toJson(MarsRoverNotFoundException().message)
         }
     }
 }

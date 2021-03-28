@@ -14,7 +14,7 @@ import org.kodein.di.ktor.kodein
 fun Route.moveMarsRoverController() {
     val moveMarsTo by kodein().instance<MoveMarsTo>()
 
-    put("/marsRover/move") {
+    post("/marsRover/move") {
         val requestBody = call.receive<MoveMarsToDTO>()
         val command = MoveMarsToCommand(movement = Movement.valueOf(requestBody.movement))
 

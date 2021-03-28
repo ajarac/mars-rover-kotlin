@@ -39,13 +39,13 @@ fun Application.main() {
     }
     install(StatusPages) {
         exception<MarsRoverNotFoundException> {
-            call.respond(HttpStatusCode.NotFound, Gson().toJson(it))
+            call.respond(HttpStatusCode.NotFound, Gson().toJson(it.message))
         }
         exception<PointOutsideOfWorld> {
-            call.respond(HttpStatusCode.BadRequest, Gson().toJson(it))
+            call.respond(HttpStatusCode.BadRequest, Gson().toJson(it.message))
         }
         exception<EncounterAnObstacleException> {
-            call.respond(HttpStatusCode.Forbidden, Gson().toJson(it))
+            call.respond(HttpStatusCode.Forbidden, Gson().toJson(it.message))
         }
     }
     kodein {

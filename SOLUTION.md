@@ -73,7 +73,7 @@ Response:
 }
 ```
 
-### PUT "/marsRover/move"
+### POST "/marsRover/move"
 To move Mars Rover to forward or backward
 
 Request:
@@ -86,7 +86,7 @@ Request:
 Success Response:
 - 201 Created, No Content
 
-### PUT "/marsRover/rotate"
+### POST "/marsRover/rotate"
 To rotate mars Rover to left or right
 
 Request:

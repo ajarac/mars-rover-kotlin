@@ -2,6 +2,7 @@ package infrastructure.controllers
 
 import com.google.gson.Gson
 import com.wallapop.domain.MarsRover
+import com.wallapop.domain.MarsRoverNotFoundException
 import com.wallapop.domain.point.Point
 import com.wallapop.infrastructure.controllers.CreateMarsRoverDTO
 import com.wallapop.infrastructure.controllers.RotateMarsToDTO
@@ -30,7 +31,7 @@ class RotateMarsRoverControllerTest {
 
         val rotateMarsToDTO = RotateMarsToDTO("LEFT")
 
-        with(handleRequest (HttpMethod.Put, "/marsRover/rotate"){
+        with(handleRequest (HttpMethod.Post, "/marsRover/rotate"){
             addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
             setBody(Gson().toJson(rotateMarsToDTO))
         }) {
@@ -43,12 +44,14 @@ class RotateMarsRoverControllerTest {
     fun `should throw mars rover not found if does not exists`(): Unit = withTestApplication(Application::main) {
         val rotateMarsToDTO = RotateMarsToDTO("LEFT")
 
-        with(handleRequest(HttpMethod.Put, "/marsRover/rotate") {
+        with(handleRequest(HttpMethod.Post, "/marsRover/rotate") {
             addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
             setBody(Gson().toJson(rotateMarsToDTO))
         }) {
+            println(response.content)
+            println(MarsRoverNotFoundException())
             response.status() `should be equal to` HttpStatusCode.NotFound
-            response.content `should be equal to` null
+            response.content `should be equal to` Gson().toJson(MarsRoverNotFoundException().message)
         }
     }
 }
