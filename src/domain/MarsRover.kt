@@ -16,8 +16,13 @@ data class MarsRover(private var position : Position = Position(), private val w
     }
 
     fun moveTo(movement: Movement) {
-        position = position.moteTo(movement, world)
-        world.checkPointInsideWorld(position.point)
+        val newPosition: Position = position.moteTo(movement).normalize(world.height, world.width)
+
+        world.checkEncounterAnObstacle(newPosition.point)
+
+        world.checkPointInsideWorld(newPosition.point)
+
+        position = newPosition
     }
 
     fun rotateTo(rotate: Rotate) {

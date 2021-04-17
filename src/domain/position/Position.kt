@@ -1,6 +1,5 @@
 package com.wallapop.domain.position
 
-import com.wallapop.domain.world.World
 import com.wallapop.domain.point.Point
 
 data class Position(val point: Point = Point(0, 0), val direction: Direction = Direction.NORTH) {
@@ -16,16 +15,12 @@ data class Position(val point: Point = Point(0, 0), val direction: Direction = D
         }
     }
 
-    fun moteTo(movement: Movement, world: World): Position {
+    fun moteTo(movement: Movement): Position {
         val vectorDirection: Point = vectorDirection(direction)
-        val newPosition: Position = when(movement) {
-            Movement.FORWARD -> copy(point = point.add(vectorDirection).normalize(world.height, world.width))
-            Movement.BACKWARD -> copy(point = point.subtract(vectorDirection).normalize(world.height, world.width))
+        return when(movement) {
+            Movement.FORWARD -> copy(point = point.add(vectorDirection))
+            Movement.BACKWARD -> copy(point = point.subtract(vectorDirection))
         }
-
-        world.checkEncounterAnObstacle(newPosition.point)
-
-        return newPosition
     }
 
     fun rotateTo(rotate: Rotate): Position {
@@ -33,5 +28,9 @@ data class Position(val point: Point = Point(0, 0), val direction: Direction = D
             Rotate.LEFT -> copy(direction = direction.moveToLeft())
             Rotate.RIGHT -> copy(direction = direction.moveToRight())
         }
+    }
+
+    fun normalize(height: Int, width: Int): Position {
+        return this.copy(point = this.point.normalize(height, width))
     }
 }
